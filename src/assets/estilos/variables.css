@@ -1,0 +1,46 @@
+@font-face {
+    font-family: 'Cabin Regular';
+    src: url(../fonts/Cabin-Regular.ttf);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'Cabin Medium';
+    src: url(../fonts/Cabin-Medium.ttf);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: 'Cabin Semibold';
+    src: url(../fonts/Cabin-SemiBold.ttf);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: 'Cabin Bold';
+    src: url(../fonts/Cabin-Bold.ttf);
+    font-weight: 700;
+}
+
+:root {
+    /* Colores */
+    --color-primario: #D97706;
+    --color-secundario: #332C24;
+    --color-fondo-claro: #FFFBEB;
+    --color-fondo-neutro: #FFFFFF;
+    --color-texto-primario: #4D4D4D;
+    --color-texto-secundario: #808080;
+    --color-texto-destacado: #92400E;
+
+    /* Tipografia */
+    --font-family-regular: 'Cabin Regular', sans-serif;
+    --font-family-medium: 'Cabin Medium', sans-serif;
+    --font-family-semibold: 'Cabin Semibold', sans-serif;
+    --font-family-bold: 'Cabin Bold', sans-serif;
+    --font-size-base: 16px;
+    --line-height-title: 125%;
+    --line-height-paragraph: 150%;
+
+    /* Sombras */
+    --sombra-contenedor: 0px 5px 12px 5px rgb(51 51 51 / 15%);
+}

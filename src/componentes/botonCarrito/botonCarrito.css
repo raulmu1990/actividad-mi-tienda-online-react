@@ -1,0 +1,20 @@
+.carrito {
+    padding: 0;
+    background-color: transparent;
+    border: 1px solid var(--color-secundario);
+}
+
+.carrito__texto {
+    padding: 8px 12px;
+    color: var(--color-texto-primario);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: var(--font-size-base);
+    background-color: transparent;
+}
+
+.carrito__check:checked + .carrito__texto {
+    background-color: var(--color-secundario);
+    color: var(--color-fondo-neutro);
+}

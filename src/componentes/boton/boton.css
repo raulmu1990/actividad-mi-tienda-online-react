@@ -1,0 +1,36 @@
+.link__boton {
+    background-color: transparent;
+    color: var(--color-fondo-neutro);
+    position: relative;
+    z-index: 0;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.link__boton::before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: var(--color-primario);
+    z-index: -1;
+}
+
+.link__boton::after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: var(--color-secundario);
+    transform: translateY(100%);
+    z-index: -1;
+    transition: all 0.4s ease;
+}
+
+.link__boton:hover::after {
+    transform: translateY(0%);
+}

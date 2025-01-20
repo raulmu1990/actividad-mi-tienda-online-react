@@ -1,0 +1,52 @@
+.articulo {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border: 1px solid var(--color-secundario);
+}
+
+.img__miniatura {
+    width: 100px;
+    height: auto;
+}
+
+.articulo__nombre {
+    flex: 1;
+    font-family: var(--font-family-bold);
+    font-size: 1.125rem;
+}
+
+.articulo__cantidad {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.cantidad__texto {
+    font-size: 1rem;
+}
+
+.cantidad__input {
+    width: 48px;
+    padding: 6px;
+    border: 1px solid var(--color-secundario);
+    font-size: 1.125rem;
+    color: var(--color-texto-primario);
+}
+
+.articulo__precio {
+    font-family: var(--font-family-bold);
+    font-size: 1.125rem;
+    text-align: center;
+}
+
+@media (width < 576px) {
+    .articulo {
+        flex-direction: column;
+    }
+
+    .img__miniatura {
+        width: 100%;
+    }
+}

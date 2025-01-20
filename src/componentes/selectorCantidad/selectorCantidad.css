@@ -1,0 +1,25 @@
+.selector {
+    width: auto;
+    display: flex;
+    border: 1px solid var(--color-secundario);
+}
+
+.selector__boton {
+    padding: 0;
+    background-color: transparent;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.selector__cantidad {
+    width: 36px;
+    height: 36px;
+    border: 0;
+    background-color: transparent;
+    text-align: center;
+    color: var(--color-texto-primario);
+    font-family: var(--font-family-medium);
+}
