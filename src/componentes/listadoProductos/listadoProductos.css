@@ -17,3 +17,13 @@
         );
     gap: 16px;
 }
+
+@media (width < 576px) {
+    .productos {
+        padding: 64px 16px 32px 16px;
+    }
+
+    .productos__lista {
+        grid-template-columns: 1fr;
+    }
+}

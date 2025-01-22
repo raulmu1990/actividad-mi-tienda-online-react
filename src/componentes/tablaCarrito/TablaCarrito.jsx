@@ -1,6 +1,7 @@
 import { ArticuloCarrito } from '../articuloCarrito/ArticuloCarrito.jsx'
 import { Boton } from '../boton/Boton.jsx'
 import { useCarrito } from '../../hooks/useCarrito.js'
+import { getImageURL } from '../../utils/imagen-util.js'
 import { useNavigate } from 'react-router'
 import './tablaCarrito.css'
 
@@ -19,7 +20,7 @@ export function TablaCarrito() {
             <ArticuloCarrito
                 id={producto.id}
                 key={producto.id} 
-                imagen={producto.imagen} 
+                imagen={getImageURL(producto.imagen)} 
                 nombre={producto.nombre} 
                 precio={producto.precio*producto.cantidad}
                 cantidad={producto.cantidad}

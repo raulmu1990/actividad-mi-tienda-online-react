@@ -1,5 +1,6 @@
 import { ProductoTarjeta } from '../productoTarjeta/ProductoTarjeta.jsx'
 import { useCarrito } from '../../hooks/useCarrito.js'
+import { getImageURL } from '../../utils/imagen-util.js'
 import './listadoProductos.css'
 
 export function ListadoProductos({children, numero, productos}) {
@@ -11,7 +12,7 @@ export function ListadoProductos({children, numero, productos}) {
                 <ProductoTarjeta
                     id={producto.id}
                     key={producto.id}
-                    urlImagen={producto.imagen} 
+                    urlImagen={getImageURL(producto.imagen)} 
                     nombre={producto.nombre} 
                     precio={producto.precio}
                     estadoCarrito={articulos[indice].estadoCarrito}

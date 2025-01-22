@@ -90,6 +90,14 @@
         padding: 24px;
     }
 
+    .encabezado__bloque {
+        padding: 24px;
+    }
+
+    .columna__categorias {
+        padding: 24px 16px;
+    }
+
     .categorias__grupo {
         flex-direction: column;
     }

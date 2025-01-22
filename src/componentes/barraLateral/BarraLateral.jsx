@@ -4,6 +4,7 @@ import { IconoCerrar, Carrito } from '../Icons.jsx'
 import { Boton } from '../boton/Boton.jsx'
 import { BarraTarjeta } from '../../componentes/barraTarjeta/BarraTarjeta.jsx'
 import { useCarrito } from '../../hooks/useCarrito.js'
+import { getImageURL } from '../../utils/imagen-util.js'
 import './barraLateral.css'
 
 export function BarraLateral() {
@@ -23,7 +24,7 @@ export function BarraLateral() {
             <BarraTarjeta
                 key={producto.id} 
                 id={producto.id} 
-                imagen={producto.imagen} 
+                imagen={getImageURL(producto.imagen)} 
                 nombre={producto.nombre}
                 precio={producto.precio}
                 cantidad={producto.cantidad}

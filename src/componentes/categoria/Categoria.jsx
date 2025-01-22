@@ -1,5 +1,6 @@
 import './categoria.css'
 import { productos } from '../../data/productos.js'
+import { getImageURL } from '../../utils/imagen-util.js'
 
 export function Categoria({nombre, genero}) {
 
@@ -11,7 +12,7 @@ export function Categoria({nombre, genero}) {
         <article className='categoria'>
             <img 
                 className='categoria__imagen' 
-                src={producto.imagen} 
+                src={getImageURL(producto.imagen)} 
                 alt='Imagen destacada para la categoria' 
             />
             <div className='categoria__texto'>

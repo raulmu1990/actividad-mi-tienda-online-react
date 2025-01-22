@@ -46,3 +46,23 @@
     text-align: center;
     text-wrap: wrap;
 }
+
+@media (width < 768px) {
+    .footer__cta {
+        padding: 24px;
+    }
+
+    .cta__bloque {
+        padding: 32px;
+    }
+}
+
+@media (width < 576px) {
+    .footer__cta {
+        padding: 16px;
+    }
+
+    .cta__bloque {
+        padding: 24px;
+    }
+}
