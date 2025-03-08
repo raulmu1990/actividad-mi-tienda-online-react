@@ -30,6 +30,16 @@
     font-weight: bold;
 }
 
+.menuBtn-and-links {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.menuBtn {
+    visibility: hidden;
+}
+
 .nav__lista {
     display: flex;
     align-items: center;
@@ -56,5 +66,25 @@
     .header {
         padding-left: 32px;
         padding-right: 32px;
+    }
+
+    .menuBtn {
+        visibility: visible;
+    }
+
+    .nav__lista {
+        position: fixed;
+        background-color: white;
+        width: 320px;
+        height: 100%;
+        padding: 32px;
+        flex-direction: column;
+        gap: 24px;
+        top: 0;
+        right: -320px;
+    }
+
+    #menuCheck:checked ~ .nav__lista {
+        right: 0;
     }
 }
