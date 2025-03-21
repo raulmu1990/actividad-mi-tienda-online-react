@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router'
-import { Menu } from '../Icons.jsx'
+import { Menu, IconoCerrar } from '../Icons.jsx'
 import './header.css'
+import { useState } from 'react'
 
 export function Header() {
 
@@ -22,6 +23,12 @@ export function Header() {
         navigate('/checkout')
     }
 
+    const [menuActivo, setMenuActivo] = useState(false)
+
+    const handleChange = (event) => {
+        setMenuActivo(event.target.checked)
+    }
+
     return (
         <header className='header'>
             <nav className='header__nav'>
@@ -29,20 +36,27 @@ export function Header() {
                     <div className='logo__icon'>MiTienda</div>
                 </a>
                 <div className='menuBtn-and-links'>
-                    <input type='checkbox' id='menuCheck' hidden />
+                    <input onChange={handleChange} type='checkbox' id='menuCheck' hidden />
                     <label htmlFor='menuCheck' className='menuBtn'>
-                        <Menu size="32px" color="#333" />
+                        {
+                            menuActivo 
+                                ? <IconoCerrar size="32px" color="#333" /> 
+                                : <Menu size="32px" color="#333" />
+                        }
                     </label>
                     <ul className='nav__lista'>
                         <li className='lista__elemento'>
                             <a className='elemento__link' onClick={irAlInicio}>Home</a>
                         </li>
+                        <hr />
                         <li className='lista__elemento'>
                             <a className='elemento__link' onClick={verProductos}>Productos</a>
                         </li>
+                        <hr />
                         <li className='lista__elemento'>
                             <a className='elemento__link' onClick={verCarrito}>Carrito</a>
                         </li>
+                        <hr />
                         <li className='lista__elemento'>
                             <a className='elemento__link' onClick={verCheckout}>Checkout</a>
                         </li>

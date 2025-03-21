@@ -1,3 +1,7 @@
+hr {
+    display: none;
+}
+
 .header {
     width: 100%;
     height: 64px;
@@ -63,6 +67,14 @@
 }
 
 @media (width < 576px) {
+
+    hr {
+        display: block;
+        width: 100%;
+        height: 1px;
+        background-color: #333;
+    }
+
     .header {
         padding-left: 32px;
         padding-right: 32px;
@@ -75,13 +87,15 @@
     .nav__lista {
         position: fixed;
         background-color: white;
-        width: 320px;
+        width: 60%;
         height: 100%;
         padding: 32px;
         flex-direction: column;
+        align-items: flex-start;
         gap: 24px;
-        top: 0;
+        top: 64px;
         right: -320px;
+        transition: all 0.3s ease-in;
     }
 
     #menuCheck:checked ~ .nav__lista {
