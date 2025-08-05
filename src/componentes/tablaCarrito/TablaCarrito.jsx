@@ -1,7 +1,7 @@
+import { useContext } from 'react'
+import { CarritoContext } from '../../context/carrito.jsx'
 import { ArticuloCarrito } from '../articuloCarrito/ArticuloCarrito.jsx'
 import { Boton } from '../boton/Boton.jsx'
-import { useCarrito } from '../../hooks/useCarrito.js'
-import { getImageURL } from '../../utils/imagen-util.js'
 import { useNavigate } from 'react-router'
 import './tablaCarrito.css'
 
@@ -13,18 +13,18 @@ export function TablaCarrito() {
         navigate('/checkout')
     }
 
-    const { carrito, agregarCarrito } = useCarrito()
+    const { carrito, removerDelCarrito } = useContext(CarritoContext)    
 
     const productosCarrito = carrito.map((producto) => {
         return (
             <ArticuloCarrito
                 id={producto.id}
                 key={producto.id} 
-                imagen={getImageURL(producto.imagen)} 
+                imagen={producto.urlImagen} 
                 nombre={producto.nombre} 
                 precio={producto.precio*producto.cantidad}
                 cantidad={producto.cantidad}
-                agregarCarrito={agregarCarrito}
+                removerDelCarrito={removerDelCarrito}
             />
         )
     })
@@ -39,7 +39,7 @@ export function TablaCarrito() {
                         {productosCarrito}
                     </ul>
                 </div>
-                <section className='carrito__sumario'>
+                <div className='carrito__sumario'>
                     <strong className='sumario__titulo'>
                         Sumario
                     </strong>
@@ -77,9 +77,8 @@ export function TablaCarrito() {
                         </output>
                     </div>
                     <Boton texto='Ir al Checkout' path={irACheckout} />
-                </section>
+                </div>
             </section>
-            
         </>
         
     )

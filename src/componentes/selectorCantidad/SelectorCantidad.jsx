@@ -1,34 +1,30 @@
-import { useState } from 'react'
 import { IconoMenos, IconoMas } from '../Icons.jsx'
 import './selectorCantidad.css'
 
-export function SelectorCantidad({cantidad, setCantidad, estado}) {
+export function SelectorCantidad({id, estadoCarrito, cantidad, setCantidad, cambiarCantidad}) {
 
-    const [cantidadArticulos, setCantidadArticulos] = useState(cantidad)
-
-    const cambiarCantidad = (event) => {
-        if (event.target.id === 'menos') {
-            setCantidadArticulos(cantidadArticulos - 1 || 1)
-            setCantidad(cantidadArticulos - 1 || 1)
-        } else if (event.target.id === 'mas') {
-            setCantidadArticulos(cantidadArticulos + 1)
-            setCantidad(cantidadArticulos + 1)
+    const handleCantidad = (nuevaCantidad) => {
+        if (nuevaCantidad < 1) {
+            setCantidad(1)
+            return
         }
+        setCantidad(nuevaCantidad)
+        if (estadoCarrito) cambiarCantidad(id, nuevaCantidad)
     }
 
     return (
         <div className='selector'>
-            <button id='menos' onClick={cambiarCantidad} className='selector__boton' disabled={estado} >
+            <button id='menos' onClick={() => handleCantidad(cantidad - 1)} className='selector__boton'>
                 <IconoMenos size='16' color='#4d4d4d' />
             </button>
             <input 
                 className='selector__cantidad' 
                 type='number' 
-                value={cantidadArticulos} 
+                value={cantidad} 
                 min='1'
                 readOnly 
             />
-            <button id='mas' onClick={cambiarCantidad} className='selector__boton' disabled={estado}>
+            <button id='mas' onClick={() => handleCantidad(cantidad + 1)} className='selector__boton'>
                 <IconoMas size='16' color='#4d4d4d' />
             </button>
         </div>

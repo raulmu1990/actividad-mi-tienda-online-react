@@ -1,17 +1,17 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { CarritoContext } from '../../context/carrito.jsx'
 import { SelectorCantidad } from '../selectorCantidad/SelectorCantidad.jsx'
 import { BotonCarrito } from '../botonCarrito/BotonCarrito.jsx'
 import './productoTarjeta.css'
 
-export function ProductoTarjeta({id, urlImagen, nombre, precio, estadoCarrito, cantidadCarrito, agregarCarrito}) {
+export function ProductoTarjeta({id, urlImagen, nombre, precio}) {
 
-   const [cantidad, setCantidad] = useState(cantidadCarrito)
+    const { carrito, agregarAlCarrito, removerDelCarrito, cambiarCantidad } = useContext(CarritoContext)
+    
+    const productoEnCarrito = carrito.find(producto => producto.id === id)
+    const [cantidad, setCantidad] = useState(productoEnCarrito?.cantidad ?? 1)
 
-    const cambiarCarrito = (estado) => {
-            agregarCarrito(id, estado, cantidad)
-    }
-
-
+    const estadoCarrito = carrito.some(producto => producto.id === id)
 
     return (
         <li className='tarjeta' key={id}>
@@ -27,8 +27,23 @@ export function ProductoTarjeta({id, urlImagen, nombre, precio, estadoCarrito, c
                     {nombre}
                 </strong>
                 <footer className='info__footer'>
-                    <BotonCarrito estadoCarrito={estadoCarrito} cambiarCarrito={cambiarCarrito} />
-                    <SelectorCantidad cantidad={cantidad} setCantidad={setCantidad} estado={estadoCarrito} />
+                    <BotonCarrito 
+                        id={id}
+                        nombre={nombre}
+                        precio={precio}
+                        cantidad={cantidad} 
+                        urlImagen={urlImagen}
+                        estadoCarrito={estadoCarrito} 
+                        agregarAlCarrito={agregarAlCarrito} 
+                        removerDelCarrito={removerDelCarrito}
+                    />
+                    <SelectorCantidad
+                        id={id}
+                        estadoCarrito={estadoCarrito} 
+                        cantidad={cantidad} 
+                        setCantidad={setCantidad}
+                        cambiarCantidad={cambiarCantidad} 
+                    />
                 </footer>
             </div>
         </li>

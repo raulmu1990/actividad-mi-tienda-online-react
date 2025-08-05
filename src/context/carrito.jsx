@@ -1,36 +1,18 @@
-import { productos } from '../data/productos.js'
-import { createContext, useState } from 'react'
+import { createContext } from 'react'
+import { useCarrito } from '../hooks/useCarrito.js'
 
 export const CarritoContext = createContext()
 
 export function CarritoProvider({children}) {
 
-    const productosCarrito = productos.map((producto) => {
-        return (
-            {
-                ...producto,
-                estadoCarrito: false,
-                cantidad: 1
-            }
-        )
-    })
-
-    const [articulos, setArticulos] = useState(productosCarrito)
-
-    const filtrarCarrito = (articulos) => {
-        return articulos.filter(articulo => {
-           return articulo.estadoCarrito === true
-        })
-    }
-    const [carrito, setCarrito] = useState(filtrarCarrito(articulos))
+    const { carrito, agregarAlCarrito, removerDelCarrito, cambiarCantidad } = useCarrito()
 
     return (
         <CarritoContext.Provider value={{
-            articulos,
-            setArticulos,
             carrito,
-            setCarrito,
-            filtrarCarrito
+            agregarAlCarrito,
+            removerDelCarrito,
+            cambiarCantidad
         }}>
             {children}
         </CarritoContext.Provider>

@@ -1,10 +1,9 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { useNavigate } from 'react-router'
 import { IconoCerrar, Carrito } from '../Icons.jsx'
 import { Boton } from '../boton/Boton.jsx'
 import { BarraTarjeta } from '../../componentes/barraTarjeta/BarraTarjeta.jsx'
-import { useCarrito } from '../../hooks/useCarrito.js'
-import { getImageURL } from '../../utils/imagen-util.js'
+import { CarritoContext } from '../../context/carrito.jsx'
 import './barraLateral.css'
 
 export function BarraLateral() {
@@ -15,26 +14,23 @@ export function BarraLateral() {
         navigate('/carrito')
     }
 
-    const { carrito, agregarCarrito } = useCarrito()
-
-    console.log(carrito)
+    const {carrito, removerDelCarrito} = useContext(CarritoContext)
 
     const listaCarrito = carrito.map((producto) => {
         return (
             <BarraTarjeta
                 key={producto.id} 
                 id={producto.id} 
-                imagen={getImageURL(producto.imagen)} 
+                imagen={producto.urlImagen} 
                 nombre={producto.nombre}
                 precio={producto.precio}
                 cantidad={producto.cantidad}
-                agregarCarrito={agregarCarrito}
+                removerDelCarrito={removerDelCarrito}
             />
         )
     })
 
     const [visible, setVisible] = useState(false)
-    const [cantidadCarrito] = useState(carrito)
 
     const menuVisible = visible ? 'carritoBarra--visible' : 'carritoBarra'
 

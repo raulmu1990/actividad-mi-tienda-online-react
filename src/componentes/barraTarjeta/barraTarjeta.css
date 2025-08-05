@@ -19,7 +19,15 @@
     color: var(--color-texto-destacado)
 }
 
+.tarjetaCarrito label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--color-secundario);
+}
+
 .tarjetaCarrito__cantidad {
+    width: 64px;
     font-size: 1rem;
     color: var(--color-texto-primario);
     border: 1px solid var(--color-secundario);

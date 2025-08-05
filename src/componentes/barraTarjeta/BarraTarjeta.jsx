@@ -1,8 +1,7 @@
 import { IconoCerrar } from '../Icons.jsx'
-import { useState } from 'react'
 import './barraTarjeta.css'
 
-export function BarraTarjeta({id, imagen, nombre, precio, cantidad, agregarCarrito}) {
+export function BarraTarjeta({id, imagen, nombre, precio, cantidad, removerDelCarrito}) {
 
     return (
         <li className='tarjetaCarrito'>
@@ -17,8 +16,11 @@ export function BarraTarjeta({id, imagen, nombre, precio, cantidad, agregarCarri
             <small className='tarjetaCarrito__precio'>
                 ${precio}
             </small>
-            <input className='tarjetaCarrito__cantidad' type='number' value={cantidad} readOnly />
-            <button onClick={() => agregarCarrito(id, false, cantidad)} className='tarjetaCarrito__cerrar'>
+            <label>
+                Cantidad:
+                <input className='tarjetaCarrito__cantidad' type='number' value={cantidad} readOnly />
+            </label>
+            <button onClick={() => removerDelCarrito(id)} className='tarjetaCarrito__cerrar'>
                 <IconoCerrar size='24' color='#4d4d4d' />
             </button>
         </li>

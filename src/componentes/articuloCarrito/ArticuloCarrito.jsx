@@ -1,7 +1,12 @@
 import { IconoCerrar } from '../Icons.jsx'
 import './articuloCarrito.css'
 
-export function ArticuloCarrito({id, imagen, nombre, precio, cantidad, agregarCarrito}) {
+export function ArticuloCarrito({id, imagen, nombre, precio, cantidad, removerDelCarrito}) {
+
+    const handleClick = () => {
+        removerDelCarrito(id)
+    }
+
     return (
         <li className='articulo'>
             <div className='articulo__img'>
@@ -18,7 +23,7 @@ export function ArticuloCarrito({id, imagen, nombre, precio, cantidad, agregarCa
                 <small className='precio__total'>${precio}</small>
             </div>
             <div className='articulo__cerrar'>
-                <button className='cerrar__boton' onClick={() => agregarCarrito(id, false, cantidad)}>
+                <button className='cerrar__boton' onClick={handleClick}>
                     <IconoCerrar size='32' color='#4d4d4d' />
                 </button>
             </div>

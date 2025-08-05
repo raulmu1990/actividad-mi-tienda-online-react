@@ -1,13 +1,10 @@
 import { ProductoTarjeta } from '../productoTarjeta/ProductoTarjeta.jsx'
-import { useCarrito } from '../../hooks/useCarrito.js'
 import { getImageURL } from '../../utils/imagen-util.js'
 import './listadoProductos.css'
 
 export function ListadoProductos({children, numero, productos}) {
 
-    const { articulos, carrito, agregarCarrito} = useCarrito()
-
-    const productosLista = productos.map((producto, indice) => {
+    const productosLista = productos?.map((producto) => {
         return (
                 <ProductoTarjeta
                     id={producto.id}
@@ -15,9 +12,6 @@ export function ListadoProductos({children, numero, productos}) {
                     urlImagen={getImageURL(producto.imagen)} 
                     nombre={producto.nombre} 
                     precio={producto.precio}
-                    estadoCarrito={articulos[indice].estadoCarrito}
-                    cantidadCarrito={articulos[indice].cantidad}
-                    agregarCarrito={agregarCarrito}
                 />
         )
     })
