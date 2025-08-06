@@ -12,6 +12,7 @@ export function BarraLateral() {
 
     const verCarrito = () => {
         navigate('/carrito')
+        window.scrollTo(0, 0)
     }
 
     const {carrito, removerDelCarrito} = useContext(CarritoContext)

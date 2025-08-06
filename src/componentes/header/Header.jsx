@@ -9,18 +9,22 @@ export function Header() {
 
     const irAlInicio = () => {
         navigate('/')
+        window.scrollTo(0, 0)
     }
 
     const verProductos = () => {
         navigate('/productos')
+        window.scrollTo(0, 0)
     }
 
     const verCarrito = () => {
         navigate('/carrito')
+        window.scrollTo(0, 0)
     }
 
     const verCheckout = () => {
         navigate('/checkout')
+        window.scrollTo(0, 0)
     }
 
     const [menuActivo, setMenuActivo] = useState(false)

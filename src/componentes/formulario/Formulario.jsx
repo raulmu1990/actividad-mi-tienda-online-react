@@ -1,36 +1,24 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+import { CarritoContext } from '../../context/carrito.jsx'
 import './formulario.css'
 
 export function Formulario() {
 
-    const [formData, setFormData] = useState({
-        nombre: '',
-        email: '',
-        telefono: '',
-        direccion: '',
-        ciudad: '',
-        metodoPago: 'tarjeta',
-      });
+    const { total } = useContext(CarritoContext)
 
-      const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({
-          ...formData,
-          [name]: value,
-        });
-      };
+    const [formData, setFormData] = useState([])
 
-      const datos = Object.entries(formData).map(([clave, valor], id) => {
-            return (
-                <li key={id} className='lista__dato'>{clave}: {valor}</li>
-            )
-        })
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        const data = new FormData(event.target)
+        setFormData(data)
+    }
 
     return (
         <section className='checkout'>
-            <form className='checkout__formulario'>
-                        <h2 className='formulario__titulo'>Formulario de checkout</h2>
-
+            <h2 className='formulario__titulo'>Formulario de checkout</h2>
+            <div className='checkout__container'>
+                <form className='checkout__formulario' onSubmit={handleSubmit}>
                         <div className='formulario__fila'>
                             <div className='fila__elemento'>
                                 <label className='elemento__titulo' htmlFor='nombre'>Nombre completo</label>
@@ -39,8 +27,6 @@ export function Formulario() {
                                     type='text'
                                     id='nombre'
                                     name='nombre'
-                                    value={formData.nombre}
-                                    onChange={handleChange}
                                     required
                                 />
                             </div>
@@ -54,8 +40,6 @@ export function Formulario() {
                                 type='email'
                                 id='email'
                                 name='email'
-                                value={formData.email}
-                                onChange={handleChange}
                                 required
                                 />
                             </div>
@@ -67,8 +51,6 @@ export function Formulario() {
                                 type='tel'
                                 id='telefono'
                                 name='telefono'
-                                value={formData.telefono}
-                                onChange={handleChange}
                                 required
                                 />
                             </div>
@@ -82,8 +64,6 @@ export function Formulario() {
                                 type='text'
                                 id='direccion'
                                 name='direccion'
-                                value={formData.direccion}
-                                onChange={handleChange}
                                 required
                                 />
                             </div>
@@ -95,8 +75,6 @@ export function Formulario() {
                                 type='text'
                                 id='ciudad'
                                 name='ciudad'
-                                value={formData.ciudad}
-                                onChange={handleChange}
                                 required
                                 />
                             </div>
@@ -105,23 +83,51 @@ export function Formulario() {
                         <div className='formulario__fila'>
                             <div className='fila__elemento'>
                                 <label className='elemento__titulo' htmlFor='metodoPago'>Metodo de pago</label>
-                                <select value={formData.metodoPago} onChange={handleChange} className='elemento__input' id='metodoPago' name='metodoPago'>
+                                <select className='elemento__input' id='metodoPago' name='metodoPago'>
                                     <option value='tarjeta'>Tarjeta de credito</option>
                                     <option  value='paypal'>Paypal</option>
                                     <option value='efectivo'>Efectivo contra entrega</option>
                                 </select>
                             </div>
+
+                            <div className='fila__elemento'>
+                                <label className='elemento__titulo' htmlFor='ciudad'>Total a pagar</label>
+                                <input
+                                className='elemento__input'
+                                type='number'
+                                id='total'
+                                name='total'
+                                value={total}
+                                readOnly
+                                />
+                            </div>
                         </div>
-                        <button className='checkout__boton' type="submit">Ordenar</button>
-                </form>
-                <section className='checkout__datos'>
-                    <strong className='datos__titulo'>Datos del cliente</strong>
-                    <div className='datos__caja'>
-                        <ul className='caja__lista'>
-                            {datos}
-                        </ul>
-                    </div>
-                </section>
+                        <button className='checkout__boton' type='submit'>Ordenar</button>
+            </form>
+            <div className='checkout__datos'>
+                <strong className='datos__titulo'>Datos del cliente</strong>
+                <div className='datos__caja'>
+                    <ul className='caja__lista'>
+                        {
+                            formData.length == 0 
+                                ? (<p>No hay datos</p>) 
+                                : (
+                                    <>
+                                        <li>Nombre: <strong>{formData.get('nombre')}</strong></li>
+                                        <li>Email: <strong>{formData.get('email')}</strong></li>
+                                        <li>Telefono: <strong>{formData.get('telefono')}</strong></li>
+                                        <li>Direccion: <strong>{formData.get('direccion')}</strong></li>
+                                        <li>Nombre: <strong>{formData.get('ciudad')}</strong></li>
+                                        <li>Metodo de pago: <strong>{formData.get('metodoPago')}</strong></li>
+                                        <li>Total a pagar: <strong>{formData.get('total')}</strong></li>
+                                    </>
+                                )
+                        }
+                    </ul>
+                </div>
+            </div>
+            </div>
+            
         </section>
     )
 }

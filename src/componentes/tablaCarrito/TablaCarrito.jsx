@@ -11,9 +11,10 @@ export function TablaCarrito() {
 
     const irACheckout = () => {
         navigate('/checkout')
+        window.scrollTo(0, 0)
     }
 
-    const { carrito, removerDelCarrito } = useContext(CarritoContext)    
+    const { carrito, removerDelCarrito, subTotal, impuesto, total } = useContext(CarritoContext)    
 
     const productosCarrito = carrito.map((producto) => {
         return (
@@ -29,14 +30,16 @@ export function TablaCarrito() {
         )
     })
 
-    const subTotal = carrito.reduce((total, producto) => total + producto.precio*producto.cantidad, 0)
-
     return (
         <>
             <section className='carrito'>
                 <div className='carrito__articulos'>
                     <ul className='articulos__contenido' role='list'>
-                        {productosCarrito}
+                        {
+                            carrito.length > 0 
+                                ? productosCarrito 
+                                : (<p>No hay productos en carrito</p>)
+                        }
                     </ul>
                 </div>
                 <div className='carrito__sumario'>
@@ -48,7 +51,7 @@ export function TablaCarrito() {
                             Subtotal {carrito.length} productos
                         </p>
                         <output className='fila__cantidad'>
-                            ${subTotal}
+                            {carrito.length > 0 ? `$${subTotal}` : 'N/A'}
                         </output>
                     </div>
                     <div className='sumario__fila'>
@@ -56,7 +59,7 @@ export function TablaCarrito() {
                             Cargo por envio
                         </p>
                         <output className='fila__cantidad'>
-                            $8
+                            {carrito.length > 0 ? `$${8}` : 'N/A'}
                         </output>
                     </div>
                     <div className='sumario__fila'>
@@ -64,7 +67,7 @@ export function TablaCarrito() {
                             Impuestos 5%
                         </p>
                         <output className='fila__cantidad'>
-                            ${subTotal*0.05}
+                            {carrito.length > 0 ? `$${impuesto}` : 'N/A'}
                         </output>
                     </div>
                     <hr/>
@@ -73,7 +76,7 @@ export function TablaCarrito() {
                             Total
                         </p>
                         <output className='total__cantidad'>
-                            ${subTotal + 8 + subTotal*0.05}
+                            {carrito.length > 0 ? `$${total + 8}` : 'N/A'}
                         </output>
                     </div>
                     <Boton texto='Ir al Checkout' path={irACheckout} />

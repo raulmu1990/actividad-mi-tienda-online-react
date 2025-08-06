@@ -5,11 +5,14 @@ export const CarritoContext = createContext()
 
 export function CarritoProvider({children}) {
 
-    const { carrito, agregarAlCarrito, removerDelCarrito, cambiarCantidad } = useCarrito()
+    const { carrito, subTotal, impuesto, total, agregarAlCarrito, removerDelCarrito, cambiarCantidad } = useCarrito()
 
     return (
         <CarritoContext.Provider value={{
             carrito,
+            subTotal,
+            impuesto,
+            total,
             agregarAlCarrito,
             removerDelCarrito,
             cambiarCantidad

@@ -8,6 +8,7 @@ export function Footer() {
 
     const verProductos = () => {
         navigate('/productos')
+        window.scrollTo(0, 0)
     }
 
     return (

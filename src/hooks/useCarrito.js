@@ -30,5 +30,12 @@ export function useCarrito() {
         setCarrito(carritoClon)
     }
 
-    return { carrito, agregarAlCarrito, removerDelCarrito, cambiarCantidad }
+    const subTotal = carrito.reduce((total, producto) => {
+        return total + producto.precio*producto.cantidad
+    }, 0)
+
+    const impuesto = (subTotal * 0.05).toFixed(2)
+    const total = subTotal + parseFloat(impuesto)
+
+    return { carrito, subTotal, impuesto, total, agregarAlCarrito, removerDelCarrito, cambiarCantidad }
 }
