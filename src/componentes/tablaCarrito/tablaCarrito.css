@@ -23,39 +23,12 @@
     font-family: var(--font-family-bold);
 }
 
-.carrito__sumario {
-    width: 40%;
-    padding: 32px;
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    gap: 24px;
-    border: 1px solid var(--color-secundario);
-    background-color: var(--color-fondo-claro);
-}
-
-.sumario__titulo {
-    color: var(--color-texto-destacado);
-    font-size: 1.25rem;
-}
-
-.sumario__fila {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
 @media (width < 992px) {
     .carrito {
         flex-direction: column;
     }
 
-    .carrito__articulo {
-        width: 100%;
-    }
-
-    .carrito__sumario {
+    .carrito__articulos {
         width: 100%;
     }
 }

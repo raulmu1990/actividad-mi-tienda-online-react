@@ -104,4 +104,8 @@
     .formulario__fila {
         flex-direction: column;
     }
+
+    .checkout__container {
+        flex-direction: column;
+    }
 }
